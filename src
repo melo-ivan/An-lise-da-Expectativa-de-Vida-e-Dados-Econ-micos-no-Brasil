@@ -1,0 +1,59 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
+
+# Dados
+data = {
+    'Ano': [2021, 2021, 2021],
+    'Categoria': ['Expectativa de Vida', 'Dólar Comercial', 'Euro Comercial'],
+    'Valores': [77, 5.663, 6.133],
+}
+
+# DataFrame
+df = pd.DataFrame(data)
+
+# Configuração dos gráficos
+plt.figure(figsize=(10, 5))
+
+# Gráfico de barras para Expectativa de Vida
+plt.subplot(1, 2, 1)
+sns.barplot(x='Categoria', y='Valores', data=df)
+plt.title('Expectativa de Vida e Moedas em 2021')
+plt.ylabel('Valores')
+plt.xticks(rotation=45)
+
+# Gráfico de linha para a evolução da expectativa de vida
+anos = np.array([1940, 2021])
+expectativa = np.array([45.5, 77])
+plt.subplot(1, 2, 2)
+plt.plot(anos, expectativa, marker='o')
+plt.title('Evolução da Expectativa de Vida no Brasil')
+plt.xlabel('Ano')
+plt.ylabel('Expectativa de Vida (anos)')
+plt.grid()
+
+plt.tight_layout()
+plt.show()
+
+# Gráfico interativo 3D
+fig = px.scatter_3d(
+    df,
+    x='Ano',
+    y='Categoria',
+    z='Valores',
+    color='Categoria',
+    title='Expectativa de Vida e Moedas em 3D',
+    labels={'Valores': 'Valores', 'Categoria': 'Categoria'}
+)
+fig.show()
+
+# Gráfico de linhas interativo
+fig2 = px.line(
+    x=anos,
+    y=expectativa,
+    title='Evolução da Expectativa de Vida no Brasil (Interativo)',
+    labels={'x': 'Ano', 'y': 'Expectativa de Vida (anos)'}
+)
+fig2.show()
