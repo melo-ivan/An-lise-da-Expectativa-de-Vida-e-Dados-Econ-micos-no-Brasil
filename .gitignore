@@ -1,0 +1,22 @@
+
+### .gitignore
+
+```plaintext
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Dados
+data/
+*.csv
+*.xlsx
+
+# Ambientes Virtuais
+env/
+venv/
+ENV/
